@@ -1,0 +1,16 @@
+dag_name: config_driven_dag_1
+dag_schedule: "0 0 * * *"         #daily schedule
+dag_start_date: "2022-01-01"
+catchup: False
+
+tasks:
+  dag_1_task_1: 
+    job_type: nodejs
+    job_name: "--option2" 
+
+  dag_1_task_2:
+    job_type: nodejs
+    job_name: "--option1" 
+    cross_dag_dependencies: 
+      config_driven_dag_2.dag_2_task_1: #format: <dag_name>.<task_name>
+        timeout: 600 #seconds

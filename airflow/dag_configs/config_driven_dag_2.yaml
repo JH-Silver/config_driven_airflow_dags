@@ -1,0 +1,14 @@
+dag_name: config_driven_dag_2
+dag_schedule: "0 * * * *"         #hourly schedule
+dag_start_date: "2022-01-01"
+catchup: False
+
+tasks:
+  dag_2_task_1: 
+    job_type: nodejs
+    job_name: "--option2" 
+
+  dag_2_task_2:
+    job_type: nodejs
+    job_name: "--option1" 
+    dependencies: [dag_2_task_1]
